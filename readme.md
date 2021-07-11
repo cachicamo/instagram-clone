@@ -1,0 +1,1 @@
+start program from frontend directory with $ expo start -c
