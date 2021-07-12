@@ -8,6 +8,8 @@ import firebase from 'firebase';
 import { Provider } from 'react-redux';
 import { store } from './redux/store'
 
+// load keys
+import {API_KEY, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID} from '@env'
 
 // aplication screens
 import LandingScreen from './components/auth/Landing';
@@ -25,16 +27,17 @@ const Stack = createStackNavigator();
 
 // firebase configuration 
 const firebaseConfig = {
-  apiKey: "AIzaSyCUyIlN_gux--cnj_NiK6OnFeJ-j2YqX6k",
+  apiKey: API_KEY,
   authDomain: "porrello-gram.firebaseapp.com",
   projectId: "porrello-gram",
   storageBucket: "porrello-gram.appspot.com",
-  messagingSenderId: "306735399459",
-  appId: "1:306735399459:web:7f47c467577eb7936ea796",
-  measurementId: "G-YC0RT1V6QV"
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
+  measurementId: MEASUREMENT_ID
 };
 
 if (firebase.apps.length === 0) {
+  console.log(MESSAGING_SENDER_ID)
   firebase.initializeApp(firebaseConfig);
 }
 
@@ -46,7 +49,7 @@ export class App extends Component {
       loggedIn: false
     }
   }
-
+  
   componentDidMount(){
     // check if user logged in and set state
     firebase.auth().onAuthStateChanged((user) => {
